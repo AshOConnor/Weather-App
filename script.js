@@ -69,4 +69,4 @@ searchBox.addEventListener("keypress", (event) => {
 });
 
 // Initial weather check (you can change this to your default city)
-// updateWeather("New York");
+updateWeather("Paynesville, AU");

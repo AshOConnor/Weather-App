@@ -31,7 +31,10 @@ async function updateWeather(city) {
     errorElement.style.display = "none";
   } catch (error) {
     handleWeatherError();
-  }
+  } catch (error) {
+  console.error('Error fetching weather data:', error);
+  res.status(500).json({ error: 'Could not fetch weather data' });
+}
 }
 
 // Function to handle weather errors
@@ -62,6 +65,7 @@ searchBtn.addEventListener("click", async () => {
     console.error("Error fetching weather data:", error);
   }
 });
+
 
 // Initial weather check (you can change this to your default city)
 // updateWeather("New York");

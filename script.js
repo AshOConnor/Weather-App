@@ -1,4 +1,7 @@
 // Constants
+const apiKey = "process.env.API_KEY";
+const apiUrl =
+  "https://api.openweathermap.org/data/2.5/weather?units=metric&q=";
 const searchBox = document.querySelector(".search input");
 const searchBtn = document.querySelector(".search button");
 const weatherIcon = document.querySelector(".weather-icon");
@@ -12,7 +15,7 @@ const weatherElement = document.querySelector(".weather");
 // Function to update weather data and display it
 async function updateWeather(city) {
   try {
-    const response = await fetch(`/api/weather?city=${city}`);
+    const response = await fetch(apiUrl + city + `&appid=${apiKey}`);
     if (response.status === 404) {
       handleWeatherError();
       return;
@@ -31,10 +34,7 @@ async function updateWeather(city) {
     errorElement.style.display = "none";
   } catch (error) {
     handleWeatherError();
-  } catch (error) {
-  console.error('Error fetching weather data:', error);
-  res.status(500).json({ error: 'Could not fetch weather data' });
-}
+  }
 }
 
 // Function to handle weather errors
@@ -57,15 +57,9 @@ function updateWeatherIcon(weatherMain) {
 }
 
 // Event listener for the search button
-searchBtn.addEventListener("click", async () => {
-  const city = searchBox.value.trim();
-  try {
-    await updateWeather(city);
-  } catch (error) {
-    console.error("Error fetching weather data:", error);
-  }
+searchBtn.addEventListener("click", () => {
+  updateWeather(searchBox.value);
 });
-
 
 // Initial weather check (you can change this to your default city)
 // updateWeather("New York");

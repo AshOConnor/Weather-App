@@ -1,9 +1,14 @@
 // Constants
-const apiKey = "process.env.API_KEY";
-const apiUrl =
-  "https://api.openweathermap.org/data/2.5/weather?units=metric&q=";
-const searchBox = document.querySelector(".search input");
 const searchBtn = document.querySelector(".search button");
+const searchBox = document.querySelector(".search input");
+
+searchBtn.addEventListener("click", async () => {
+  const city = searchBox.value;
+  const response = await fetch(`/weather/${city}`);
+  const data = await response.json();
+  // Process the data received from the server
+});
+
 const weatherIcon = document.querySelector(".weather-icon");
 const cityElement = document.querySelector(".city");
 const tempElement = document.querySelector(".temp");

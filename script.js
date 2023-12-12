@@ -57,8 +57,21 @@ function updateWeatherIcon(weatherMain) {
 }
 
 // Event listener for the search button
-searchBtn.addEventListener("click", () => {
-  updateWeather(searchBox.value);
+searchBtn.addEventListener("click", async () => {
+  const city = searchBox.value.trim();
+  try {
+    const response = await fetch(`/api/weather?city=${city}`);
+    if (response.status === 200) {
+      const data = await response.json();
+      // Handle data as needed to update UI
+      console.log(data);
+    } else {
+      // Handle error
+      console.error("Failed to fetch weather data");
+    }
+  } catch (error) {
+    console.error("Error fetching weather data:", error);
+  }
 });
 
 // Initial weather check (you can change this to your default city)

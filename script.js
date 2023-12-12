@@ -15,7 +15,7 @@ const weatherElement = document.querySelector(".weather");
 // Function to update weather data and display it
 async function updateWeather(city) {
   try {
-    const response = await fetch(apiUrl + city + `&appid=${apiKey}`);
+    const response = await fetch(`/api/weather?city=${city}`);
     if (response.status === 404) {
       handleWeatherError();
       return;

@@ -1,17 +1,9 @@
 // Constants
-const apiKey = process.env.API_KEY;
-const apiUrl = `https://api.openweathermap.org/data/2.5/weather?units=metric&q=${city}&appid=${apiKey}`;
-
-const searchBtn = document.querySelector(".search button");
+const apiKey = "YOUR API KEY HERE";
+const apiUrl =
+  "https://api.openweathermap.org/data/2.5/weather?units=metric&q=";
 const searchBox = document.querySelector(".search input");
-
-searchBtn.addEventListener("click", async () => {
-  const city = searchBox.value;
-  const response = await fetch(`/weather/${city}`);
-  const data = await response.json();
-  // Process the data received from the server
-});
-
+const searchBtn = document.querySelector(".search button");
 const weatherIcon = document.querySelector(".weather-icon");
 const cityElement = document.querySelector(".city");
 const tempElement = document.querySelector(".temp");
@@ -67,6 +59,13 @@ function updateWeatherIcon(weatherMain) {
 // Event listener for the search button
 searchBtn.addEventListener("click", () => {
   updateWeather(searchBox.value);
+});
+
+// Event listener for the "Enter" key press in the input field
+searchBox.addEventListener("keypress", (event) => {
+  if (event.key === "Enter") {
+    updateWeather(searchBox.value);
+  }
 });
 
 // Initial weather check (you can change this to your default city)

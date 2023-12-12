@@ -57,15 +57,7 @@ function updateWeatherIcon(weatherMain) {
 searchBtn.addEventListener("click", async () => {
   const city = searchBox.value.trim();
   try {
-    const response = await fetch(`/api/weather?city=${city}`);
-    if (response.status === 200) {
-      const data = await response.json();
-      // Handle data as needed to update UI
-      console.log(data);
-    } else {
-      // Handle error
-      console.error("Failed to fetch weather data");
-    }
+    await updateWeather(city);
   } catch (error) {
     console.error("Error fetching weather data:", error);
   }
